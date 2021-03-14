@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script>
+    function getRandomArbitrary(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    //couche d'abstraction pour manipuler la création de mur :
+    //doit créer deux border : la cellule et la cellule d'à côté
+    function creerMur(){
+    
+        var mur = document.getElementById(11);
+    
+        mur.style = "";
+    
+        var coteAleatoire = getRandomArbitrary(1,5);
+    
+        console.log(coteAleatoire);
+        switch(coteAleatoire) {
+            case 1:
+            mur.style.borderLeftColor = 'orange';
+            mur.style.borderLeftStyle = 'solid';
+            mur.style.borderLeftWidth = '2px';
+            break;
+            case 2:
+            mur.style.borderTopColor = 'orange';
+            mur.style.borderTopStyle = 'solid';
+            mur.style.borderTopWidth = '2px';
+            break;
+            case 3:
+            mur.style.borderRightColor = 'orange';
+            mur.style.borderRightStyle = 'solid';
+            mur.style.borderRightWidth = '2px';
+            mur.nextElementSibling.style.borderLeftColor = 'blue';
+            mur.nextElementSibling.style.borderLeftStyle = 'solid';
+            mur.nextElementSibling.style.borderLeftWidth = '2px';
+            break;
+            case 4:
+            mur.style.borderBottomColor = 'orange';
+            mur.style.borderBottomStyle = 'solid';
+            mur.style.borderBottomWidth = '2px';
+            break;
+        } 
+    } 
+    </script>
+	<title></title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td id="11" name="11">Je pense
+        </td>
+        <td>que ça marche
+        </td>
+    </tr>
+ </table>
+ <button onClick="creerMur()"> changer mur </button>
+
+</body>
+</html>

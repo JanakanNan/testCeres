@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script type= "text/javascript" src="table.js"></script>
+    <meta charset="utf-8">
+    <style>.visited{
+      background: aqua;
+    }
+    table{
+      background-color: aqua;
+    }
+    table td{
+      background: white;
+    }
+    .current {
+      background-color: red;
+    }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <form method="get" name="taille" action="index.html" >
+      <input type="text" id="height" name="height" required
+      minlength="3" maxlength="8" size="10">
+      <input type="text" id="width" name="width" required
+      minlength="3" maxlength="8" size="10">
+      <input type="button" value="go to the page." onclick="generate_table()">
+    </form>
+  <div id="Maze">
+
+  </div>
+
+
+
+  </body>
+</html>
