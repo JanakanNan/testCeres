@@ -4,6 +4,13 @@ var current;
 var w = 40;
 var last;
 
+const queryString = window.location.search;
+
+const urlParams = new URLSearchParams(queryString);
+
+let width = urlParams.get('width');
+let height = urlParams.get('height');
+
 function sizeCase(x){
   return Math.floor(x/w);
 }
@@ -12,8 +19,8 @@ function generate_table() {
   // get the reference for the body
   var maze = document.getElementById("Maze");
   maze.innerHTML = " ";
-  var width = document.getElementById("width").value;
-  var height = document.getElementById("height").value;
+  //var width = document.getElementById("width").value;
+  //var height = document.getElementById("height").value;
   console.log(width);
   cols = sizeCase(width);
   rows = sizeCase(height);
@@ -73,8 +80,6 @@ function generate_table() {
   last.appendChild(text2);
   last.style.borderRight = "none";
 }
-
-
 
 
 function Parcours(){
@@ -160,5 +165,7 @@ function deleteWall(current, top, right, bottom, left, neighbourd, num){
   }
 
 }
+
+
 
 

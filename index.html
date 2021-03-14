@@ -19,17 +19,13 @@
     <title></title>
   </head>
   <body>
-    <form method="get" name="taille" action="index.html" >
+    <form method="get" name="taille" action="maze.html" >
       <input type="text" id="height" name="height" required
       minlength="3" maxlength="8" size="10">
       <input type="text" id="width" name="width" required
       minlength="3" maxlength="8" size="10">
-      <input type="button" value="go to the page." onclick="generate_table()">
+      <input type="submit" value="go to the page." onload="generate_table()">
     </form>
-  <div id="Maze">
-
-  </div>
-
 
 
   </body>
