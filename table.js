@@ -37,12 +37,12 @@ function generate_table() {
 
   // Crée la balise <table> et la balise <tbody>
   var tbl = document.createElement("table");
-  //tbl.style.backgroundColor="aqua";
+
   var tblBody = document.createElement("tbody");
 
   // Création de toutes les cellules
   for (var i = 0; i < rows; i++) {
-    // creates a table row
+    
     var row = document.createElement("tr");
 
     for (var j = 0; j < cols; j++) {

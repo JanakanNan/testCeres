@@ -1,5 +1,5 @@
 const getParams = require ('./table');
-const sizeCase = require('./table')
+const sizeCase = require('./table');
 
 describe('getParms', () => {
     it('should pass', () => {
@@ -20,4 +20,4 @@ describe('sizeCase', () => {
     it('should return 10 for 400', function () {
         expect(sizeCase(400)).toEqual(10)
     });
-})
+});
