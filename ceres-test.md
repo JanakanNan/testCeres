@@ -27,8 +27,3 @@ The algorithm to generate the maze is one of the key part of the test, use of an
 
 # Send your code and url : jd@ceres.agency with the subject prefixed with `[SOFTWARE ENGINEER]`
 # Good luck !
-
-
-<div id="Maze">
-
-</div>

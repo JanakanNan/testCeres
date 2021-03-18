@@ -3,43 +3,51 @@ var stack = [];
 var current;
 var w = 40;
 var last;
+let width = 0;
+let height = 0;
 
-const queryString = window.location.search;
+// Prendre les paramètres de l'URL
+function getParams(){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
 
-const urlParams = new URLSearchParams(queryString);
+  width = urlParams.get('width');
+  height = urlParams.get('height');
 
-let width = urlParams.get('width');
-let height = urlParams.get('height');
+  return urlParams.get('width');
+}
 
+
+//Avoir la taille des case
 function sizeCase(x){
   return Math.floor(x/w);
 }
 
+
+// Fonction qui genère le tableau
 function generate_table() {
-  // get the reference for the body
+
+  // Prend la référence pour le body
   var maze = document.getElementById("Maze");
   maze.innerHTML = " ";
-  //var width = document.getElementById("width").value;
-  //var height = document.getElementById("height").value;
-  console.log(width);
+  getParams();
   cols = sizeCase(width);
   rows = sizeCase(height);
+  console.log(cols,rows);
 
-
-  // creates a <table> element and a <tbody> element
+  // Crée la balise <table> et la balise <tbody>
   var tbl = document.createElement("table");
   //tbl.style.backgroundColor="aqua";
   var tblBody = document.createElement("tbody");
 
-  // creating all cells
+  // Création de toutes les cellules
   for (var i = 0; i < rows; i++) {
     // creates a table row
     var row = document.createElement("tr");
 
     for (var j = 0; j < cols; j++) {
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
+      // Crée la balise <td>,
+      // et on les place à la fin de la table de row
       var cell = document.createElement("td");
       cell.setAttribute("id",'cell_'+i+'_'+j);
 
@@ -55,42 +63,60 @@ function generate_table() {
 
     }
 
-    // add the row to the end of the table body
+    // Ajout de la row a la fin de la table body
     tblBody.appendChild(row);
   }
 
-  // put the <tbody> in the <table>
+  // on met <tbody> dans la <table>
   tbl.appendChild(tblBody);
-  // appends <table> into <body>
+  // on met la table dans le body
   maze.appendChild(tbl);
-  // sets the border attribute of tbl to 2;
+  // On met des bordure pour le tbl
   tbl.setAttribute("border", "2");
-  Parcours();
-  current = document.getElementById('cell_'+0+'_'+0);
-  var text = document.createTextNode("ENTREE");
 
-  current.appendChild(text);
+  Parcours();
+
+  current = document.getElementById('cell_'+0+'_'+0);
   current.classList.add("visited");
   current.classList.add("current");
+
+  DesignEntry(current);
+
+  last = document.getElementById('cell_'+(rows-1)+'_'+(cols-1));
+  DesignExit(last);
+
+}
+
+//Mise en place du label entrée
+function DesignEntry(current){
+  var textEntry = document.createTextNode("ENTREE");
+  current.appendChild(textEntry);
   current.style.borderLeft = "none";
 
+}
 
-  last = document.getElementById('cell_'+(cols-1)+'_'+(rows-1));
-  var text2 = document.createTextNode("SORTIE");
-  last.appendChild(text2);
+//Mise en place du label sortie
+function DesignExit(last){
+  var textExit = document.createTextNode("SORTIE");
+  last.appendChild(textExit);
   last.style.borderRight = "none";
 }
 
 
+
+// C'est une fonction qui va faire le parcours
 function Parcours(){
   setTimeout(function (){
       var i = parseInt(current.dataset.line);
       var j = parseInt(current.dataset.column);
+
       current.classList.remove("current");
+
       let top= document.getElementById('cell_'+(i-1)+'_'+j);
       let right = document.getElementById('cell_'+i+'_'+(j+1));
       let bottom= document.getElementById('cell_'+(i+1)+'_'+j);
       let left = document.getElementById('cell_'+i+'_'+(j-1));
+
       let neighbourd = gettingNeighbourd(i,j);
 
       if(neighbourd.length > 0) {
@@ -113,6 +139,7 @@ function Parcours(){
     }, 250);
 }
 
+//C'est une fonction qui va regardé tous les voisins de la case
 function gettingNeighbourd(i, j){
   var neighbourd = [];
 
@@ -146,6 +173,8 @@ function gettingNeighbourd(i, j){
 
 }
 
+
+//C'est la fonction qui efface les murs
 function deleteWall(current, top, right, bottom, left, neighbourd, num){
   if (neighbourd[num] == top) {
     current.style.borderTop = "none";
@@ -166,6 +195,8 @@ function deleteWall(current, top, right, bottom, left, neighbourd, num){
 
 }
 
+module.exports = sizeCase;
+module.exports = getParams;
 
 
 
